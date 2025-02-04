@@ -16,7 +16,7 @@ timezone:
 
 title: DDL00P's Blog # the main title
 
-tagline: Welcome to my blog, where I'll be sharing the notes I gather in Obsidian.
+tagline: In this blog, I will publish write-ups of various machines and other projects I have worked on.
 
  # it will display as the subtitle
 
@@ -28,19 +28,19 @@ description: >- # used by seo meta and the atom feed
 url: "https://DDL00P.github.io"
 
 github:
-  username: ddl00p # change to your GitHub username
+  username: DDL00P # change to your GitHub username
 
-twitter:
-  username: esddl00p # change to your Twitter username
+#twitter:
+  #username: esddl00p # change to your Twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: DDL00P
-  email: ddl00p@gmail.com # change to your email address
+  email: javi.cybersjr@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/eswhare1 # change to your Twitter homepage
+    - https://twitter.com/ # change to your Twitter homepage
     - https://github.com/DDL00P # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
