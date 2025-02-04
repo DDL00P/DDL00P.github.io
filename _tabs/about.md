@@ -27,4 +27,4 @@ Hi, I'm **whare1**, a passionate cybersecurity enthusiast from **Valencia, Spain
 I take pride in breaking down complex concepts and sharing my findings through detailed blog posts and tutorials. My goal is to continuously learn, improve, and contribute to the cybersecurity community.
 
 Feel free to explore my **blog** to see some of my work and contributions!
-![netrunner](/assets/images/netrunner.gif)
+
