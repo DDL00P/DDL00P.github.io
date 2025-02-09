@@ -4,7 +4,7 @@ image: /assets/antique/antique.png
 title: Antique Write Up HTB
 date: 04-02-2025
 categories: [Write ups]
-tag: [Antique, SNMP, Chisel, Port Forwarding]
+tag: [Antique,SNMP,Chisel,Port Forwarding]
 excerpt: "Antique on Hack The Box is an easy-difficulty Linux machine that revolves around exploiting a vulnerable ProFTPD server and escalating privileges through misconfigurations in the system. The initial foothold requires leveraging a known vulnerability in ProFTPD to gain remote code execution, granting access to the machine. From there, privilege escalation involves identifying and exploiting weaknesses in system configurations to achieve root access.
 
 This machine is ideal for beginners looking to understand FTP exploitation and basic privilege escalation techniques in a controlled environment."
