@@ -15,7 +15,7 @@ Precious on Hack The Box is a easy difficulty Linux machine that focuses on abus
 
 This machine provides a great opportunity to learn about web application exploitation and dependency-related privilege escalation in a realistic scenario.
 
-# ENUMERATION
+## ENUMERATION
 ---
 First, we start by running an nmap scan.
 
@@ -51,15 +51,15 @@ vim /etc/hosts
 
 Afterward, we access the page and see the following.
 
-![[Screenshot 2025-02-09 204037.jpg]]
+![Texto alternativo](/assets/images/Screenshot%202025-02-09%20204037.jpg)
 
 Next, let's test which library or tool is used to convert to PDF by submitting any URL and examining it with exiftool.
 
-![[Screenshot 2025-02-09 204227.jpg]]
+![Texto alternativo](/assets/images/Screenshot%202025-02-09%20204227.jpg)
 
 After submitting, we can download a PDF file and examine it using exiftool.
 
-## EXIFTOOL
+### EXIFTOOL
 ---
 Now, we analyze the downloaded file with exiftool in the directory where it was saved.
 
@@ -101,7 +101,7 @@ Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 
 We see a response in our Python server, which confirms that the target is vulnerable. We can inject a reverse shell, either using Ruby or Bash.
 
-# FOOTHOLD
+## FOOTHOLD
 ---
 Next, we create a reverse shell and execute it on the page.
 
@@ -162,7 +162,7 @@ henry@precious:~/.bundle cat /home/henry/user.txt
 ce7995181ee948############
 ```
 
-# PRIVILEGE ESCALATION
+## PRIVILEGE ESCALATION
 ---
 The first thing we do after switching to the Henry user is check for sudo privileges.
 

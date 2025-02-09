@@ -15,7 +15,7 @@ Antique on Hack The Box is an easy-difficulty Linux machine that revolves around
 
 This machine is ideal for beginners looking to understand FTP exploitation and basic privilege escalation techniques in a controlled environment.
 
-# ENUMERATION
+## ENUMERATION
 ---
 
 First, we perform a port scan as usual with the command:
@@ -46,7 +46,7 @@ Raw packets sent: 65535 (2.884MB) | Rcvd: 65535 (2.621MB)
 ```
 
 ---
-## TELNET
+### TELNET
 
 ---
 
@@ -59,7 +59,7 @@ telnet 10.10.11.107
 When entering the command, it asks for a password that we do not have, so we need to continue investigating.
 
 ---
-## SNMP
+### SNMP
 
 ---
 
