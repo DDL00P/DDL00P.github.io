@@ -51,11 +51,11 @@ vim /etc/hosts
 
 Afterward, we access the page and see the following.
 
-![Texto alternativo](/assets/images/Screenshot%202025-02-09%20204037.jpg)
+![Texto alternativo](/assets/precious/Screenshot%202025-02-09%20204037.jpg)
 
 Next, let's test which library or tool is used to convert to PDF by submitting any URL and examining it with exiftool.
 
-![Texto alternativo](/assets/images/Screenshot%202025-02-09%20204227.jpg)
+![Texto alternativo](/assets/precious/Screenshot%202025-02-09%20204227.jpg)
 
 After submitting, we can download a PDF file and examine it using exiftool.
 
