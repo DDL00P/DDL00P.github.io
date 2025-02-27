@@ -5,11 +5,15 @@ title: Perfection Write Up HTB
 date: 12-02-2025
 categories: [Write ups]
 tag: [Hash Cracking,SSTI,Credential Dumping]
-excerpt: "Perfection is an easy Linux machine with a web app that calculates student scores. The app is vulnerable to Server-Side Template Injection (SSTI) via regex filter bypass, allowing initial access. The user is part of the sudo group, and further enumeration reveals password hashes in a database. By performing a mask attack, the user's password is cracked, leading to root access."
+excerpt: "Perfection on Hack The Box is an easy-difficulty Linux machine that revolves around exploiting a vulnerable student score calculation web application and escalating privileges through password cracking. The initial foothold requires leveraging a Server-Side Template Injection (SSTI) vulnerability by bypassing a regex filter, granting access to the machine. From there, privilege escalation involves discovering password hashes stored in a database and performing a mask attack to retrieve credentials, ultimately leading to root access.
+
+This machine is ideal for those looking to understand SSTI exploitation and password-cracking techniques in a real-world scenario"
 ---
 ![img-description](/assets/perfection/perfection.png)
 
-Perfection is an easy Linux machine with a web app that calculates student scores. The app is vulnerable to Server-Side Template Injection (SSTI) via regex filter bypass, allowing initial access. The user is part of the sudo group, and further enumeration reveals password hashes in a database. By performing a mask attack, the user's password is cracked, leading to root access.
+Perfection on Hack The Box is an easy-difficulty Linux machine that revolves around exploiting a vulnerable student score calculation web application and escalating privileges through password cracking. The initial foothold requires leveraging a Server-Side Template Injection (SSTI) vulnerability by bypassing a regex filter, granting access to the machine. From there, privilege escalation involves discovering password hashes stored in a database and performing a mask attack to retrieve credentials, ultimately leading to root access.
+
+This machine is ideal for those looking to understand SSTI exploitation and password-cracking techniques in a real-world scenario
 
 ## ENUMERATION
 ---
