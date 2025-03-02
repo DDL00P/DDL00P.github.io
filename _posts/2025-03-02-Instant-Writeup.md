@@ -1,7 +1,7 @@
 ---
 layaout: post
 image: /assets/instant/instant.png
-title: Antique Write Up HTB
+title: Instant Write Up HTB
 date: 02-03-2025
 categories: [Write ups]
 tag: [Reverse Engineering,API Exploitation,Arbitrary File Read,Mobile Application,APK Analysis,Encryption Cracking,Hash Cracking,Solar-PuTTY,Linux,Privilege Escalation,Medium Difficulty]
