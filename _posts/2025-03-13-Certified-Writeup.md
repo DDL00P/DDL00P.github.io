@@ -1,6 +1,6 @@
 ---
 layaout: post
-image: /assets/certified
+image: /assets/certified/certified.png
 title: Certified Write Up HTB
 date: 13-03-2025
 categories: [Write ups]
@@ -9,7 +9,7 @@ excerpt: "Certified on Hack The Box is a medium-difficulty Windows machine cente
 
 This machine is ideal for intermediate users looking to enhance their skills in Active Directory exploitation, certificate-based attacks, and post-exploitation techniques in Windows environments."
 ---
-![img-description](/assets//certified/)
+![img-description](/assets/certified/certified.png)
 
 Certified on Hack The Box is a medium-difficulty Windows machine centered around exploiting vulnerabilities in an Active Directory environment and leveraging misconfigurations in certificate services. The initial foothold requires enumerating the Active Directory with tools like BloodHound to discover potential attack paths. Privilege escalation involves abusing certificate-based authentication through Certipy, allowing the attacker to impersonate high-privileged users and gain control of the system.
 
@@ -87,7 +87,7 @@ The output was successfully collected and compressed into a ZIP file, ready for 
 #### BloodHound Analysis
 ---
 
-![[Screenshot 2025-03-03 153723.jpg]]
+![Texto alternativo](/assets/certified/Screenshot%202025-03-03%20153723.jpg)
 
 The BloodHound graph revealed several key attack paths within the Active Directory environment:
 
