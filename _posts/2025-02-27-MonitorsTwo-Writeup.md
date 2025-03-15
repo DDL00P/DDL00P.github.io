@@ -4,7 +4,7 @@ image: /assets/monitorstwo/monitorstwo.png
 title: MonitorsTwo Write Up HTB
 date: 27-02-2025
 categories: [Write ups]
-tag: [Cacti, Command Injection, Privilege Escalation, Docker Escape, MySQL, Hash Cracking, CVE-2021-41091]
+tag: [Cacti, Command Injection, Privilege Escalation, Docker Escape, MySQL, Hash Cracking, CVE-2021-41091,Linux]
 excerpt: "MonitorsTwo on Hack The Box is an easy-difficulty Linux machine that revolves around exploiting a vulnerable Cacti-based web application and escalating privileges through credential retrieval and container misconfigurations. The initial foothold requires leveraging a command injection vulnerability in the web application to gain remote code execution, granting access to the machine. From there, privilege escalation involves extracting stored MySQL credentials and exploiting a misconfigured Docker container to escape to the host system and achieve root access.
 
 This machine is ideal for beginners looking to understand web application exploitation, credential-based privilege escalation, and container security in a controlled environment."
@@ -122,7 +122,7 @@ To make the shell more manageable, we execute the following:
 
 ![Texto alternativo](/assets/monitorstwo/Screenshot%202025-02-27%20165224.jpg)
 
-## EXIT THE DOCKER CONTAINER
+## DOCKER BREAKOUT
 ---
 We realize we are inside a Docker container because:
 - The `hostname` consists of random hexadecimal characters: `50bca5e748b0`

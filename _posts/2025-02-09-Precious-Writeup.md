@@ -4,7 +4,7 @@ image: /assets/precious/precious.png
 title: Precious Write Up HTB
 date: 09-02-2025
 categories: [Write ups]
-tag: [Precious,ExifTool,Explotation,Ruby Deserialization]
+tag: [Precious,ExifTool,Explotation,Ruby Deserialization,Linux]
 excerpt: "Precious on Hack The Box is a easy difficulty Linux machine that focuses on abusing a misconfigured Ruby on Rails server and exploiting vulnerabilities in third-party dependencies to escalate privileges. Gaining initial access involves identifying and exploiting a known vulnerability in the Ruby on Rails framework to achieve remote code execution. Privilege escalation is accomplished by leveraging an insecure third-party dependency, allowing the user to gain root privileges.
 
 This machine provides a great opportunity to learn about web application exploitation and dependency-related privilege escalation in a realistic scenario."
