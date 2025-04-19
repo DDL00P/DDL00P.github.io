@@ -159,7 +159,8 @@ sudo vim /etc/hosts
 
 Once the domain was added I took care of inspecting the `bloodhound` and seeing what permissions the user `Olivia` has
 
-![[Screenshot 2025-03-03 205242.jpg]]
+![Texto alternativo](/assets/administrator/Screenshot%202025-03-03%20205242.jpg)
+
 
 We can see that the user `Olivia` has general permissions on the user `Michael` and the user `Michael` can change the password of `Benjamin` so this is our main way of escalating to the user `Benjamin`
 
@@ -262,19 +263,19 @@ And we already know the password of the file which is `tekieromucho` so we can e
 
 Once downloaded we proceed to open it and we get this
 
-![[Screenshot 2025-03-03 212855.jpg]]
+![Texto alternativo](/assets/administrator/Screenshot%202025-03-03%20212855.jpg)
 
 Here we put the password `tekieromucho` and we get this
 
-![[Screenshot 2025-03-03 212943.jpg]]
+![Texto alternativo](/assets/administrator/Screenshot%202025-03-03%20212943.jpg)
 
 Well we see 3 users if we right click it we get this
 
-![[Screenshot 2025-03-03 213033.jpg]]
+![Texto alternativo](/assets/administrator/Screenshot%202025-03-03%20213033.jpg)
 
 Therefore we create a file to save the users with their respective password in this way
 
-![[Screenshot 2025-03-03 213336 1.jpg]]
+![Texto alternativo](/assets/administrator/Screenshot%202025-03-03%20213336%201.jpg)
 
 ### EVIL-WINRM
 ---
@@ -306,7 +307,7 @@ And in the path `C:\Users\emily\Desktop` is the `user.txt`
 ---
 If we perform another analysis with burpsuite and look for how emily could elevate privileges we find the following
 
-![[Screenshot 2025-03-03 214351.jpg]]
+![Texto alternativo](/assets/administrator/Screenshot%202025-03-03%20214351.jpg)
 
 Due to `Emily` permissions over `Ethan`, a `targeted Kerberoasting` attack can be performed.
 ### Kerberoasting
