@@ -2,7 +2,7 @@
 layaout: post
 image: /assets/vintage/vintage.png
 title: Vintage Write Up HTB
-date: 27-04-2025
+date: 25-04-2025
 categories: [Write ups]
 tag: [Windows, Active Directory, Privilege Escalation, Kerberos Attacks, DPAPI, BloodHound, Hard Difficulty]
 excerpt: "Vintage on Hack The Box is a hard-difficulty Windows machine centered around exploiting vulnerabilities in an Active Directory environment and leveraging misconfigurations in certificate services. The initial foothold consists of obtaining a TGT ticket through Impacket and thus obtaining tickets from different users.Privilege escalation consists of violating a DPAPI and using a masterkey to exploit it to obtain different TGT tickets.
@@ -18,7 +18,7 @@ This machine is ideal for experts users looking to enhance their skills in Activ
 ## ENUMERATION
 ---
 ### NMAP SCAN
----
+
 
 First we run nmap as usual to see the open ports
 
@@ -86,7 +86,7 @@ Nmap done: 1 IP address (1 host up) scanned in 26.45 seconds
 
 ```
 
-Y vemos muchos puertos abiertos , ahora realizaremos un escaneo de vulnerabilidades de todos estos puertos con el siguiente comando
+And we see many open ports, now we will perform a vulnerability scan of all these ports with the following command
 
 ```bash
 nmap -p53,88,135,139,389,445,464,593,636,3268,3269,5985,9389,49664,49667,49674,55961,55966,55984,60916 --open -sCV 10.10.11.45 -oN targeted
@@ -325,7 +325,7 @@ sudo vim /etc/hosts
 
 IMP: That is on the same line as the other domain, that is, in this way
 
-![[Screenshot 2025-03-06 162106.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-06%20162106.jpg)
 
 Once we have added the other domain we need to configure the `/etc/resolv.conf` for this we do the following
 
@@ -444,7 +444,7 @@ INFO: Done in 00M 09S
 
 And now in the route where we have executed the previous command we find the following
 
-![[Screenshot 2025-03-06 165056.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-06%20165056.jpg)
 
 Thanks to this we can start the `BloodHound` and analyze the machine in more depth. To do this we first need to start the `BloodHound` database which is `neo4j`. To start it we run this
 
@@ -461,21 +461,21 @@ BloodHound
 Once inside we import the data in the top right corner, we look for the section that says `Upload Data` and select all the **.json** files. Now we start the analysis. We will focus on the user `L.BIANCHI_ADM`.
 
 ---
-![[Screenshot 2025-03-06 170734.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-06%20170734.jpg)
 Here we can see that the user L.BIANCHI_ADM@vintage.htb is a member of the **DOMAIN ADMINS** group, meaning he has administrator privileges.
 
 ---
-![[Screenshot 2025-03-06 171255.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-06%20171255.jpg)
 
 And that GMSA01$@VINTAGE.HTB can be added to the **DOMAINS ADMINS** group
 
 ---
-![[Screenshot 2025-03-07 125255.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-07%20125255.jpg)
 
 Groups that have control or elevated privileges over the account `GMSA01$@VINTAGE.HTB`
 
 ---
-![[Screenshot 2025-03-07 125634.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-07%20125634.jpg)
 
 From FS01 to GMSA01, we can see that FS01 can read GMS's password
 
@@ -814,7 +814,7 @@ Version: v1.0.3 (9dad6e1) - 12/04/24 - Ronnie Flathers @ropnop
 
 The account C.Neri@vintage.htb has successfully logged in with the password Zer0the0ne. Let's take a look at his privileges with **BloodHound**
 
-![[Screenshot 2025-03-07 132847.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-07%20132847.jpg)
 
 We see that it belongs to the group `SERVICEMANAGERS@VINTAGE.HTB` so we are going to get the credentials for this account, we run the following
 
@@ -882,9 +882,9 @@ And we already have the first flag, now we move on to the elevation of privilege
 
 ## PRIVILEGE ESCALATION
 ---
-![[Screenshot 2025-03-07 133351.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-07%20133351.jpg)
 
-![[Screenshot 2025-03-07 133427.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-07%20133427.jpg)
 
 ### DPAPI
 ---
@@ -902,11 +902,11 @@ DPAPI (Data Protection API) is a cryptographic API in Windows operating systems 
 ---
 If we investigate a little we find that in the path `C:\Users\C.Neri\AppData\Roaming\Microsoft\Credentials` we find the following, and we download it
 
-![[Screenshot 2025-03-07 134118.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-07%20134118.jpg)
 
 What we have downloaded we will need later, if we continue investigating we find that in the path `C:\Users\C.Neri\AppData\Roaming\Microsoft\Protect\S-1-5-21-4024337825-2033394866-2055507597-1115` we find this
 
-![[Screenshot 2025-03-07 134345.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-07%20134345.jpg)
 
 Then we try to crack the file `99cf41a3-a552-4cf7-a8d7-aca2d6f7339b` which is the most important since this will give us a password, to crack it we execute the following
 
@@ -966,9 +966,9 @@ Unknown     : Uncr4ck4bl3P4ssW0rd0312
 
 The password of `c.neri_adm` is: `Uncr4ck4bl3P4ssW0rd0312`
 
-![[Screenshot 2025-03-07 135854.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-07%20135854.jpg)
 
-![[Screenshot 2025-03-07 135906.jpg]]
+![Texto alternativo](/assets/vintage/Screenshot%202025-03-07%20135906.jpg)
 
 The next step is to add `C.NERL_ADM` to `DELEGATEDADMINS` so we run the following to add it to the group, however we can use C.Neri to add a SPN to the service account (call it whatever you want) and then use C.Neri_adm to move it to the delegated administrators group, so that we can use this service account to deploy RBCD ABUSE (this service account must be svc_sql, because we only know its password):
 
