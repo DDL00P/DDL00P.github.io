@@ -55,19 +55,19 @@ Once access to a system is obtained, a pentester can leverage DPAPI to:
     
 - Access secrets **without requiring user interaction**
 
-### DPAPI Attack Scenarios
+#### DPAPI Attack Scenarios
 ###  1. Access via User Password
 
 If a user's plaintext password is captured (e.g., through phishing, credential dumping, or brute-force), it can be used directly to decrypt the user’s masterkey and retrieve DPAPI-protected secrets.
 #### Tools:
 
-    mimikatz
+- mimikatz
 
-    SharpDPAPI
+- SharpDPAPI
 
-    gsecdump
+- gsecdump
 
-    impacket-dpapi
+- impacket-dpapi
 
 #### Practical Example with impacket-dpapi:
 
