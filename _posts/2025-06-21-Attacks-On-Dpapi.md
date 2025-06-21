@@ -61,6 +61,7 @@ Once access to a system is obtained, a pentester can leverage DPAPI to:
 ####  1. Access via User Password
 
 If a user's plaintext password is captured (e.g., through phishing, credential dumping, or brute-force), it can be used directly to decrypt the user’s masterkey and retrieve DPAPI-protected secrets.
+
 ##### Tools:
 
 - mimikatz
