@@ -14,9 +14,11 @@ DPAPI exploitation in Windows environments involves leveraging the Data Protecti
 ## Introduction
 
 During the post-exploitation phase in Windows, accessing persistent credentials and secrets is a key goal. DPAPI (Data Protection API) is a critical Windows feature that encrypts sensitive information at the OS level. Understanding DPAPI’s internals and exploitation techniques is essential for penetration testers and red teamers conducting ethical security assessments in authorized environments.
+
 ## What is DPAPI?
 
 DPAPI is a native Windows API (since Windows 2000) that enables applications to securely encrypt and decrypt sensitive data—such as credentials, private keys, and certificates—without directly managing cryptographic keys.
+
 ## How It Works
 
 Each user has one or more master keys stored in:
@@ -113,6 +115,7 @@ Password : Uncr4ck4bl3P4ssW0rd0312
 ####  2. Access via NTLM Hash
 
 If a user’s NTLM hash is available (e.g., via LSASS dump, DCSync, or Pass-the-Hash), it can also be used to decrypt DPAPI secrets.
+
 #####  Requirements:
 
 - User's SID
@@ -155,6 +158,7 @@ mimikatz # lsadump::dpapi
 ####  4. Extracting Application Secrets (e.g., Chrome)
 
 Many applications, like Google Chrome, rely on DPAPI to encrypt sensitive user data.
+
 #####  Target File:
 
 ```bash
@@ -162,6 +166,7 @@ Many applications, like Google Chrome, rely on DPAPI to encrypt sensitive user d
 ```
 
 This is a SQLite database containing DPAPI-encrypted blobs. With the user’s masterkey and profile, a tester can recover all saved browser passwords.
+
 #####  Tools:
 
 - `chrome_dpapi_decrypt.py`
@@ -175,6 +180,7 @@ This is a SQLite database containing DPAPI-encrypted blobs. With the user’s ma
 #### 5. Validating and Cracking Masterkeys with dpapimk2john
 
 If a DPAPI masterkey is obtained but the password is unknown, it can be validated or cracked using John the Ripper, after converting it with DPAPImk2john.
+
 ##### Example 1: Validate a Known Password
 
 Assumptions:
@@ -190,6 +196,7 @@ DPAPImk2john -mk ../S-1-5-21-2168718921-3906202695-65158103-1000/655a0446-8420-4
 ```
 
 If correct, the decrypted key will be displayed.
+
 ##### Example 2: Crack with Dictionary
 
 Convert masterkey to John-compatible hash:
