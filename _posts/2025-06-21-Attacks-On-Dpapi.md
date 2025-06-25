@@ -3,7 +3,7 @@ layaout: post
 image: /assets/dpapi/dpapi1.png
 title: Attacks On Dpapi
 date: 21-06-2025
-categories: [ATTACKS]
+categories: [Attacks]
 tag: [DPAPI, Impacket, Mimikatz, LaZagne, DPAPImk2john]
 excerpt: "DPAPI exploitation in Windows environments involves leveraging the Data Protection API to decrypt sensitive user secrets such as credentials, private keys, and tokens. This is typically done during post-exploitation when attackers have acquired user passwords, NTLM hashes, or SYSTEM privileges to access DPAPI masterkeys and recover protected data."
 ---
